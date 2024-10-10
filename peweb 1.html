@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Mind Class</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        nav {
+            margin: 15px 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #4CAF50;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .quiz {
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        .option {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Creative Mind Class</h1>
+        <nav>
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('lkpd')">LKPD</a>
+            <a href="#" onclick="showSection('about')">About</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="home" class="section">
+            <h2>Home</h2>
+            <img src="https://acerforeducation.id/wp-content/uploads/2021/06/cover-1.jpg;" alt="img src" height="500" width="860"
+            <br>
+            <p>Welcome to our website, We provide a platform to make it easier for students to do assignments and study.</p>
+            <p>Explore the various features we offer and enhance your learning experience.</p>
+        </div>
+
+        <div id="lkpd" class="section" style="display: none;">
+            <h2>LKPD (Lembar Kerja Peserta Didik)</h2>
+            <p>LKPD adalah alat bantu belajar yang dirancang untuk membantu siswa memahami materi pelajaran melalui latihan dan pertanyaan yang terstruktur.</p>
+            <h3>Contoh LKPD</h3>
+            <ul>
+                <li><a href="#">LKPD Matematika: Bilangan Bulat</a></li>
+                <li><a href="#">LKPD IPA: Struktur Bumi</a></li>
+                <li><a href="#">LKPD Bahasa Inggris: Vocabulary</a></li>
+            </ul>
+
+
+            <h3>LKPD Interaktif</h3>
+            <div class="quiz">
+                <div class="question">
+                    <p><strong>1. Apa itu Bilangan Bulat?</strong></p>
+                    <label class="option"><input type="radio" name="q1" value="a"> A. Hanya angka positif</label>
+                    <label class="option"><input type="radio" name="q1" value="b"> B. Angka positif dan negatif serta nol</label>
+                    <label class="option"><input type="radio" name="q1" value="c"> C. Hanya angka negatif</label>
+                    <button onclick="checkAnswer('q1', 'b')">Kirim Jawaban</button>
+                    <div class="feedback" id="feedback-q1"></div>
+                </div>
+                <div class="question">
+                    <p><strong>2. Berapa hasil dari 2 + 2?</strong></p>
+                    <label class="option"><input type="radio" name="q2" value="a"> A. 3</label>
+                    <label class="option"><input type="radio" name="q2" value="b"> B. 4</label>
+                    <label class="option"><input type="radio" name="q2" value="c"> C. 5</label>
+                    <button onclick="checkAnswer('q2', 'b')">Kirim Jawaban</button>
+                    <div class="feedback" id="feedback-q2"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="about" class="section" style="display: none;">
+            <h2>Tentang Kami</h2>
+            <p>Website LKPD dibangun untuk membantu siswa dan guru dalam proses belajar mengajar. Kami percaya bahwa dengan teknologi yang tepat, pendidikan dapat menjadi lebih menarik dan efisien.</p>
+        </div>
+
+        <div id="contact" class="section" style="display: none;">
+            <h2>Hubungi Kami</h2>
+            <p>Jika Anda memiliki pertanyaan atau saran, jangan ragu untuk menghubungi kami melalui email di <a href="mailto:info@lkpdwebsite.com">info@lkpdwebsite.com</a>.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 LKPD Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.display = 'none'; // Sembunyikan semua bagian
+            });
+            document.getElementById(sectionId).style.display = 'block'; // Tampilkan bagian yang dipilih
+        }
+
+        document.getElementById('lkpdForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman form
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const content = document.getElementById('lkpdContent').value;
+
+            // Tampilkan pesan konfirmasi
+            document.getElementById('responseMessage').innerText = 
+                `Terima kasih, ${name}! Jawaban Anda telah diterima.`;
+            
+            // Kosongkan form
+            this.reset();
+        });
+
+        function checkAnswer(question, correctAnswer) {
+            const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+            const feedbackElement = document.getElementById(`feedback-${question}`);
+
+            if (selectedOption) {
+                if (selectedOption.value === correctAnswer) {
+                    feedbackElement.innerText = 'Jawaban Anda benar!';
+                    feedbackElement.style.color = 'green';
+                } else {
+                    feedbackElement.innerText = 'Jawaban Anda salah. Coba lagi!';
+                    feedbackElement.style.color = 'red';
+                }
+            } else {
+                feedbackElement.innerText = 'Silakan pilih jawaban.';
+                feedbackElement.style.color = 'orange';
+            }
+        }
+
+        // Tampilkan bagian Home secara default
+        showSection('home');
+    </script>
+</body>
+</html>
